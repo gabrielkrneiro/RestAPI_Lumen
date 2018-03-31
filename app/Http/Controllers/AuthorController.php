@@ -4,47 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AuthorSearch;
+use App\BookSearch;
 
-class AuthorController extends Controller
+class AuthorController extends BaseController
 {
-    public function showAllAuthors()
+    function __construct()
     {
-       return response()->json(AuthorSearch::all());
+        $this->class = new AuthorSearch();
     }
 
-    public function showOneAuthor($id)
+    private static function book()
     {
-       return response()->json(AuthorSearch::find($id));
+        return new BookSearch();
     }
 
-    public function create(Request $request)
+    public function validating($request)
     {
         $this->validate($request,[
             'aut_name' => 'required|string|min:3'
         ]);
-
-        $author = AuthorSearch::create($request->all());
-        return response()->json($author, 201);
-    }
-
-    public function delete($id)
-    {
-        $response = AuthorSearch::findOrFail($id)->delete();
-        if($response)
-        {
-            return response('{"response":"true"}', 200);
-        }
-        else
-        {
-            return response('{"response":"false"}',400);
-        }
-    }
-
-    public function update($id, Request $request)
-    {
-        $author = AuthorSearch::findOrFail($id);
-        $author->update($request->all());
-
-        return response()->json($author, 200);
     }
 }
