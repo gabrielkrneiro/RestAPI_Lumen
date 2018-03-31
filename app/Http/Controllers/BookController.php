@@ -14,6 +14,9 @@ class BookController extends BaseController
 
     public function validating(Request $request)
     {
-        return true;
+        $this->validate($request,[
+            'boo_title' => 'required|string|min:3',
+            'boo_aut_id' => 'required|integer'
+        ]);
     }
 }
