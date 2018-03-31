@@ -13,9 +13,10 @@ class AuthorSeeder extends Seeder
     public function run()
     {
         DB::table('author')->delete();
-        for($i=0;$i < 10;$i++)
+        for($i=1;$i <= 10;$i++)
         {
             DB::table('author')->insert([
+                'id' => $i,
                 'aut_name' => 'author '.$i,
                 'created_at' => date('Y-m-d H:m:s'),
                 'updated_at' => date('Y-m-d H:m:s')

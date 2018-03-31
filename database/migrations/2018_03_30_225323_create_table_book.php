@@ -15,10 +15,10 @@ class CreateTableBook extends Migration
     {
         Schema::create('book', function (Blueprint $table){
             $table->increments('id');
-            $table->string('boo_name');
+            $table->string('boo_title');
             $table->integer('boo_aut_id')->unsigned();
-
             $table->foreign('boo_aut_id')->references('id')->on('author');
+            $table->timestamps();
         });
     }
 
