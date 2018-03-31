@@ -11,12 +11,11 @@ use App\Router;
 |
 */
 
-/*
 
 use App\Book;
 
 
-$router->group(['prefix' => 'api'/*, 'middleware' => 'auth'*/], function($router){
+$router->group(['prefix' => 'api', /*'middleware' => 'auth'*/], function($router){
     $router
         /*
             Author
